@@ -21,24 +21,24 @@ namespace GerenciamentoContas.Domain.Entity.Identity
         }
         public async Task<IdentityResult> CreateAsync(MyUser user, CancellationToken cancellationToken)
         {
-            using (var connection = GetOpenConnection())
-            {
-                await connection.ExecuteAsync(
-                    "insert into Users([Id]," +
-                    "[UserName]," +
-                    "[NormalizedUserName]"+
-                    "[PasswordHash]" +
-                    "Values(@id,@username,@normalizedUserName,@passwordHash)",
-                    new
+            
+                using (var connection = GetOpenConnection())
                 {
-                    id = user.Id,
-                    userName = user.UserName,
-                    NormalizedUserName = user.NormalizedUserName,
-                    password = user.PasswordHash
-                });                
-            }
-
-            return IdentityResult.Success;
+                    await connection.ExecuteAsync(
+                        "INSERT INTO Users([Id]," +
+                        "[UserName]," +
+                        "[NormalizedUserName]," +
+                        "[PasswordHash]) " +
+                        "VALUES(@id,@username,@normalizedUserName,@passwordHash)",
+                        new
+                        {
+                            id = user.Id,
+                            username = user.UserName,
+                            normalizedUserName = user.NormalizedUserName,
+                            passwordHash = user.PasswordHash
+                        });
+                }
+                return IdentityResult.Success;         
         }
 
         public async Task<IdentityResult> DeleteAsync(MyUser user, CancellationToken cancellationToken)
@@ -108,16 +108,16 @@ namespace GerenciamentoContas.Domain.Entity.Identity
             using (var connection = GetOpenConnection())
             {
                 await connection.ExecuteAsync(
-                    "insert into Users([Id]," +
-                    "[UserName]," +
-                    "[NormalizedUserName]" +
-                    "[PasswordHash]" +
-                    "Values(@id,@username,@normalizedUserName,@passwordHash)", new
+                    "INSERT INTO Users([Id]," +
+                        "[UserName]," +
+                        "[NormalizedUserName]," +
+                        "[PasswordHash]) " +
+                        "VALUES(@id,@username,@normalizedUserName,@passwordHash)", new
                 {
                     id = user.Id,
-                    userName = user.UserName,
-                    NormalizedUserName = user.NormalizedUserName,
-                    password = user.PasswordHash
+                    username = user.UserName,
+                    normalizedUserName = user.NormalizedUserName,
+                    passwordHash = user.PasswordHash
                 });
             }
             return IdentityResult.Success;
