@@ -9,7 +9,7 @@ builder.Services.AddControllers();
 builder.Services.AddSwaggerGen(c =>
 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Empresa X", Version = "v1," }));
 
-builder.Services.AddIdentityCore<User>(options => { });
+builder.Services.AddIdentityCore<MyUserStore>(options => { });
 
 var app = builder.Build();
 
