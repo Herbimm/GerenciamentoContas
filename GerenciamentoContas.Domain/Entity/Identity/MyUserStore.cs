@@ -11,13 +11,13 @@ using System.Threading.Tasks;
 
 namespace GerenciamentoContas.Domain.Entity.Identity
 {
-    public class MyUserStore : IUserStore<MyUser>
+    public class MyUserStore : IUserStore<MyUser>, IUserPasswordStore<MyUser>
     {
         public static DbConnection GetOpenConnection()
         {
-            var connection = new SqlConnection("User ID=sa;Initial Catalog=GerenciamentoContas_DB;Data Source=DESKTOP-IGQJCON/SQLEXPRESS");
+            var connection = new SqlConnection(@"Password=admin123;Persist Security Info=True;User ID=sa;Initial Catalog=IdentityCurso;Data Source=DESKTOP-IGQJCON\SQLEXPRESS");
             connection.Open();
-            return connection;  
+            return connection;
         }
         public async Task<IdentityResult> CreateAsync(MyUser user, CancellationToken cancellationToken)
         {
@@ -55,14 +55,14 @@ namespace GerenciamentoContas.Domain.Entity.Identity
 
         public void Dispose()
         {
-            throw new NotImplementedException();
-        }
-
+            
+        }      
+        
         public async Task<MyUser> FindByIdAsync(string userId, CancellationToken cancellationToken)
         {
             using (var connection = GetOpenConnection())
             {
-                return await connection.QueryFirstOrDefaultAsync<MyUser>("select * from Users where Id = @id", new { id = userId });
+                return await connection.QueryFirstOrDefaultAsync<MyUser>("select * from users where Id = @id", new { id = userId });
             }
         }
 
@@ -70,7 +70,9 @@ namespace GerenciamentoContas.Domain.Entity.Identity
         {
             using (var connection = GetOpenConnection())
             {
-                return await connection.QueryFirstOrDefaultAsync<MyUser>("select * from Users where normalizedUserName = @name", new { nome = normalizedUserName });
+                return await connection.QueryFirstOrDefaultAsync<MyUser>(
+                    "SELECT * FROM Users where normalizedUserName = @name",
+                    new { name = normalizedUserName });
             }
         }
 
@@ -119,6 +121,22 @@ namespace GerenciamentoContas.Domain.Entity.Identity
                 });
             }
             return IdentityResult.Success;
+        }
+
+        public Task SetPasswordHashAsync(MyUser user, string passwordHash, CancellationToken cancellationToken)
+        {
+            user.PasswordHash = passwordHash;
+            return Task.CompletedTask;
+        }
+
+        public Task<string> GetPasswordHashAsync(MyUser user, CancellationToken cancellationToken)
+        {
+            return Task.FromResult(user.PasswordHash);
+        }
+
+        public Task<bool> HasPasswordAsync(MyUser user, CancellationToken cancellationToken)
+        {
+            return Task.FromResult(user.PasswordHash != null);
         }
     }
 }
