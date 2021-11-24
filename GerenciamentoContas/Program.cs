@@ -13,6 +13,7 @@ builder.Services.AddSwaggerGen(c =>
 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Empresa X", Version = "v1," }));
 builder.Services.AddIdentityCore<MyUser>(options => { });
 builder.Services.AddScoped<IUserStore<MyUser>, MyUserStore>();
+builder.Services.AddAuthentication("cookies").AddCookie("cookies", options => options.LoginPath = "/Home/Login");
 
 var app = builder.Build();
 
@@ -23,6 +24,7 @@ if (!app.Environment.IsDevelopment())
     // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
 }
+app.UseAuthentication();
 app.UseSwagger();
 app.UseSwaggerUI(c =>
 {
