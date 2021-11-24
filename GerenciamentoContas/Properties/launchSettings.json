@@ -11,7 +11,7 @@
     "GerenciamentoContas": {
       "commandName": "Project",
       "dotnetRunMessages": true,
-      "launchUrl": "home/register",
+      "launchUrl": "home/index",
       "launchBrowser": true,
       "applicationUrl": "https://localhost:7168;http://localhost:5168",
       "environmentVariables": {
@@ -20,7 +20,7 @@
     },
     "IIS Express": {
       "commandName": "IISExpress",
-      "launchUrl": "home/register",
+      "launchUrl": "home/index",
       "launchBrowser": true,
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
