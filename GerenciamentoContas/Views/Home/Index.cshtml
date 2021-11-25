@@ -1,111 +1,59 @@
-﻿@model GerenciamentoContas.Models.Identity.LoginModel
-
-@{
-    ViewData["Title"] = "Login";
-}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <title>Login V1</title>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!--===============================================================================================-->
-    <link rel="icon" type="image/png" href="~/Login_v1/images/icons/favicon.ico" />
-    <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="~/Login_v1/vendor/bootstrap/css/bootstrap.min.css">
-    <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="~/Login_v1/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
-    <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="~/Login_v1/vendor/animate/animate.css">
-    <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="~/Login_v1/vendor/css-hamburgers/hamburgers.min.css">
-    <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="~/Login_v1/vendor/select2/select2.min.css">
-    <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="~/Login_v1/css/util.css">
-    <link rel="stylesheet" type="text/css" href="~/Login_v1/css/main.css">
-    <!--===============================================================================================-->
-</head>
+﻿<!DOCTYPE html>
+<title>W3.CSS Template</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<script src="https://kit.fontawesome.com/6ec418e653.js" crossorigin="anonymous"></script>
 <style>
-    #main-cont{
-         background: #9053c7;
-  background: -webkit-linear-gradient(-135deg, #c850c0, #4158d0);
-  background: -o-linear-gradient(-135deg, #c850c0, #4158d0);
-  background: -moz-linear-gradient(-135deg, #c850c0, #4158d0);
-  background: linear-gradient(-135deg, #c850c0, #4158d0);
-    }
+body, h1,h2,h3,h4,h5,h6 {font-family: "Montserrat", sans-serif}
+.w3-row-padding img {margin-bottom: 12px}
+/* Set the width of the sidebar to 120px */
+.w3-sidebar {width: 120px;background: #222;}
+/* Add a left margin to the "page content" that matches the width of the sidebar (120px) */
+#main {margin-left: 120px}
+/* Remove margins from "page content" on small screens */
+
 </style>
-<body id="main-cont">
+<body class="w3-black">
 
-    <div class="">
-        <div class="wrap-login100">
-            <div class="login100-pic js-tilt" data-tilt>
-                <img src="~/Login_v1/images/img-01.png" alt="IMG">
-            </div>
-            <form class="login100-form validate-form" asp-action="Login">
-                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                <div class="wrap-input100 validate-input">
-                    <label asp-for="UserName" class="control-label"></label>
-                    <input asp-for="UserName" class="input100" />
-                    <span asp-validation-for="UserName" class="text-danger"></span>
-                </div>
-                <div class="wrap-input100 validate-input">
-                    <label asp-for="Password" class="control-label"></label>
-                    <input asp-for="Password" class="input100"/>
-                    <span asp-validation-for="Password" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <input type="submit" value="Login" class="btn btn-primary" />
-
-
-                    <div class="text-center p-t-12">
-                        <span class="txt1">
-                            Forgot
-                        </span>
-                        <a class="txt2" href="#">
-                            Username / Password?
-                        </a>
-                    </div>
-
-                    <div class="text-center p-t-136">
-                        <a class="txt2" href="#">
-                            Create your Account
-                            <i class="fa fa-long-arrow-right m-l-5" aria-hidden="true"></i>
-                        </a>
-                    </div>
-            </form>
-        </div>
-    </div>
-
-
-
-
-
-    <!--===============================================================================================-->
-    <script src="~/Login_v1/vendor/jquery/jquery-3.2.1.min.js"></script>
-    <!--===============================================================================================-->
-    <script src="~/Login_v1/vendor/bootstrap/js/popper.js"></script>
-    <script src="~/Login_v1/vendor/bootstrap/js/bootstrap.min.js"></script>
-    <!--===============================================================================================-->
-    <script src="~/Login_v1/vendor/select2/select2.min.js"></script>
-    <!--===============================================================================================-->
-    <script src="~/Login_v1/vendor/tilt/tilt.jquery.min.js"></script>
-    <script>
-        $('.js-tilt').tilt({
-            scale: 1.1
-        })
-    </script>
-    <!--===============================================================================================-->
-    <script src="~/Login_v1/js/main.js"></script>
-
-    @*<script>
-        $('#btn-login').on('click', function(){
-        var url = "Home/Index"
-        $.get(url, function(){
-
-        });
-        });
-        </script>*@
-
+<!-- Icon Bar (Sidebar - hidden on small screens) -->
+<nav class="w3-sidebar w3-bar-block w3-small w3-hide-small w3-center">
+  <!-- Avatar image in top left corner -->
+  <img src="" style="width:100%">
+  <img src="img/logo.png" style="width:100%">
+  <a href="./consulta.html" class="w3-bar-item w3-button w3-padding-large w3-black">
+    <span style="font-size: 32px;">
+        <i class="fas fa-search"></i>
+    </span>
+    <p>CONSULTAR</p>
+  </a>
+  <a href="./labs.html" class="w3-bar-item w3-button w3-padding-large w3-hover-black">
+    <span style="font-size: 32px;">
+    <i class="fas fa-bong"></i>
+    </span>
+    <p>LABORATÓRIOS</p>
+  </a>
+  <a href="./news.html" class="w3-bar-item w3-button w3-padding-large w3-hover-black">
+    <span style="font-size: 30px;">
+        <i class="far fa-newspaper"></i>
+    </span>
+    <p>NOTÍCIAS</p>
+  </a>
+  <a href="./about.html" class="w3-bar-item w3-button w3-padding-large w3-hover-black">
+    <span style="font-size: 32px;">
+        <i class="fas fa-info-circle"></i>
+    </span>
+    <p>SOBRE</p>
+  </a>
+</nav>
+<div class="w3-top w3-hide-large w3-hide-medium" id="menu">
+  <div class="w3-bar w3-black w3-opacity w3-hover-opacity-off w3-center w3-small">
+    <a href="./consulta.html" class="w3-bar-item w3-button" style="width:25% !important">CONSULTAR</a>
+    <a href="./labs.html" class="w3-bar-item w3-button" style="width:25% !important">LABORATÓRIOS</a>
+    <a href="./news.html" class="w3-bar-item w3-button" style="width:25% !important">NOTÍCIAS</a>
+    <a href="./about.html" class="w3-bar-item w3-button" style="width:25% !important">SOBRE</a>
+  </div>
+</div>
 </body>
-</html>

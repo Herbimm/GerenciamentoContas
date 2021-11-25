@@ -1,0 +1,183 @@
+
+<!DOCTYPE html>
+<html>
+<title>W3.CSS Template</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="css/subpages.css">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<script src="https://kit.fontawesome.com/6ec418e653.js" crossorigin="anonymous"></script>
+<script src="script/subpages.js"></script>
+<style>
+body, h1,h2,h3,h4,h5,h6 {font-family: "Montserrat", sans-serif}
+.w3-row-padding img {margin-bottom: 12px}
+/* Set the width of the sidebar to 120px */
+.w3-sidebar {width: 120px;background: #222;}
+/* Add a left margin to the "page content" that matches the width of the sidebar (120px) */
+#main {margin-left: 120px}
+/* Remove margins from "page content" on small screens */
+@media only screen and (max-width: 600px) {#main {margin-left: 0}}
+</style>
+<body class="w3-black">
+
+<!-- Icon Bar (Sidebar - hidden on small screens) -->
+<nav class="w3-sidebar w3-bar-block w3-small w3-hide-small w3-center">
+  <!-- Avatar image in top left corner -->
+  <img src="img/logo.png" style="width:100%">
+  <a href="./consulta.html" class="w3-bar-item w3-button w3-padding-large w3-black">
+    <span style="font-size: 32px;">
+        <i class="fas fa-search"></i>
+    </span>
+    <p>CONSULTAR</p>
+  </a>
+  <a href="./labs.html" class="w3-bar-item w3-button w3-padding-large w3-hover-black">
+    <span style="font-size: 32px;">
+    <i class="fas fa-bong"></i>
+    </span>
+    <p>LABORATÓRIOS</p>
+  </a>
+  <a href="./news.html" class="w3-bar-item w3-button w3-padding-large w3-hover-black">
+    <span style="font-size: 32px;">
+        <i class="far fa-newspaper"></i>
+    </span>
+    <p>NOTÍCIAS</p>
+  </a>
+  <a href="./about.html" class="w3-bar-item w3-button w3-padding-large w3-hover-black">
+    <span style="font-size: 32px;">
+        <i class="fas fa-info-circle"></i>
+    </span>
+    <p>SOBRE</p>
+  </a>
+</nav>
+
+<!-- Navbar on small screens (Hidden on medium and large screens) -->
+<div class="w3-top w3-hide-large w3-hide-medium" id="myNavbar">
+  <div class="w3-bar w3-black w3-opacity w3-hover-opacity-off w3-center w3-small">
+    <a href="./consulta.html" class="w3-bar-item w3-button" style="width:25% !important">CONSULTAR</a>
+    <a href="./labs.html" class="w3-bar-item w3-button" style="width:25% !important">LABORATÓRIOS</a>
+    <a href="./news.html" class="w3-bar-item w3-button" style="width:25% !important">NOTÍCIAS</a>
+    <a href="./about.html" class="w3-bar-item w3-button" style="width:25% !important">SOBRE</a>
+  </div>
+</div>
+
+
+<div class="w3-content w3-justify w3-text-grey w3-padding-64">
+  <h2 class="w3-text-light-grey">Consulta Material</h2>
+  <hr style="width:200px" class="w3-opacity">
+
+  Informe no campo abaixo para o material para qual deseja encontrar entidades certificadoras.<br><br>
+  <form action="php/consulta.php" method="post">
+      <input type="text" name="material" title="Ex.: areia, cimento..." placeholder="Informe aqui o Material"> <img class="help clickable" src="img/help.png" title="Clique para obter ajuda" alt="ajuda"><br><br>
+      <input class="clickable" type="submit" value="Procurar">
+  </form>
+</div>
+<!-- <div class="w3-content w3-justify w3-text-grey w3-padding-64">
+    <h2 class="w3-text-light-grey">Consulta Laboratorios</h2>
+    <hr style="width:200px" class="w3-opacity">
+    <p>Na lista abaixo voce pode consulta um dos laboratorios associados.
+    </p>
+    <input class="w3-input w3-border w3-padding" type="text" placeholder="Search for names.." id="myInput" onkeyup="myFunction()">
+
+  <table class="w3-table-all w3-margin-top" id="myTable">
+    <tr>
+      <th style="width:60%;">Nome</th>
+      <th style="width:40%;">Estado</th>
+    </tr>
+    <tr>
+      <td>lab1</td>
+      <td>Minas Gerais</td>
+    </tr>
+    <tr>
+      <td>lab2</td>
+      <td>Sao Paulo</td>
+    </tr>
+    <tr>
+      <td>lab3</td>
+      <td>Rio de Janeiro</td>
+    </tr>
+    <tr>
+      <td>lab4</td>
+      <td>Minas Gerais</td>
+    </tr>
+    <tr>
+      <td>lab5</td>
+      <td>Bahia</td>
+    </tr>
+    <tr>
+      <td>lab6</td>
+      <td>Pernanbuco</td>
+    </tr>
+    <tr>
+      <td>lab7</td>
+      <td>Amazonas</td>
+    </tr>
+    <tr>
+      <td>lab8</td>
+      <td>Espirito Santo</td>
+    </tr>
+  </table>
+
+  <p><strong>Status:</strong> Tabela atualizada. 01/11/2021</p>
+
+  <script>
+    function myFunction() {
+      var input, filter, table, tr, td, i;
+      input = document.getElementById("myInput");
+      filter = input.value.toUpperCase();
+      table = document.getElementById("myTable");
+      tr = table.getElementsByTagName("tr");
+      for (i = 0; i < tr.length; i++) {
+        td = tr[i].getElementsByTagName("td")[0];
+        if (td) {
+          txtValue = td.textContent || td.innerText;
+          if (txtValue.toUpperCase().indexOf(filter) > -1) {
+            tr[i].style.display = "";
+          } else {
+            tr[i].style.display = "none";
+          }
+        }
+      }
+    }
+    </script>
+    
+</div> -->
+
+
+
+  <footer class="w3-content w3-padding-64 w3-text-grey w3-xlarge">
+    <i class="fa fa-facebook-official w3-hover-opacity"></i>
+    <i class="fa fa-instagram w3-hover-opacity"></i>
+    <i class="fa fa-snapchat w3-hover-opacity"></i>
+    <i class="fa fa-pinterest-p w3-hover-opacity"></i>
+    <i class="fa fa-twitter w3-hover-opacity"></i>
+    <i class="fa fa-linkedin w3-hover-opacity"></i>
+    <p class="w3-medium">Powered by <a href="https://www.w3schools.com/w3css/default.asp" target="_blank" class="w3-hover-text-green">Projeto PUC Turma 3</a></p>
+  <!-- End footer -->
+  </footer>
+
+<!-- END PAGE CONTENT -->
+</div>
+
+</body>
+</html>
+
+<!-- <!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="css/subpages.css">
+        <script src="script/jquery-3.6.0.min.js"></script>
+        <script src="script/subpages.js"></script>
+        <meta charset="UTF-8">
+    </head>
+<body>
+    <center>
+    Informe no campo abaixo para o material para qual deseja encontrar entidades certificadoras.<br><br>
+    <form action="php/consulta.php" method="post">
+        <input type="text" name="material" title="Ex.: areia, cimento..." placeholder="Informe aqui o Material"> <img class="help clickable" src="img/help.png" title="Clique para obter ajuda" alt="ajuda"><br><br>
+        <input class="clickable" type="submit" value="Procurar">
+    </form>
+    </center>
+</body>
+</html> -->
