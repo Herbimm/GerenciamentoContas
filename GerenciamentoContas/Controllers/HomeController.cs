@@ -64,8 +64,7 @@ namespace GerenciamentoContas.Controllers
                     return RedirectToAction("About");
                 }
                 ModelState.AddModelError("", "Usuário ou senha incorreto.");
-            }
-           
+            }           
             return View();
         }
 
