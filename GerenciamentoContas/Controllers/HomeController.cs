@@ -2,6 +2,7 @@
 using GerenciamentoContas.Models;
 using GerenciamentoContas.Models.Identity;
 using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
@@ -11,9 +12,9 @@ namespace GerenciamentoContas.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly UserManager<MyUser> _userManager;        
+        private readonly UserManager<IdentityUser> _userManager;        
 
-        public HomeController(UserManager<MyUser> userManager)
+        public HomeController(UserManager<IdentityUser> userManager)
         {
             _userManager = userManager;           
         }
@@ -23,6 +24,7 @@ namespace GerenciamentoContas.Controllers
             return View();
         }
         [HttpGet]
+        [Authorize]
         public IActionResult About()
         {
             return View();
@@ -38,12 +40,12 @@ namespace GerenciamentoContas.Controllers
             return View();
         }
         [HttpGet]
-        public async Task<IActionResult> Register()
+        public IActionResult Register()
         {
             return View();
         }
         [HttpGet]
-        public async Task<IActionResult> Login()
+        public IActionResult Login()
         {
             return View();
         }
@@ -63,13 +65,12 @@ namespace GerenciamentoContas.Controllers
                     await HttpContext.SignInAsync("cookies", new ClaimsPrincipal(identity));
                     return RedirectToAction("About");
                 }
-                ModelState.AddModelError("", "Usuário ou senha incorreto.");
+                 ModelState.AddModelError("", "Usuário ou senha incorreto.");
             }
            
             return View();
         }
-
-            [HttpPost]
+        [HttpPost]
         public async Task<IActionResult> Register(RegisterModel model)
         {
             if (ModelState.IsValid) 
@@ -77,7 +78,7 @@ namespace GerenciamentoContas.Controllers
                 var user = await _userManager.FindByNameAsync(model.UserName);
                 if (user == null)
                 {
-                    user = new MyUser()
+                    user = new IdentityUser()
                     {
                         Id = Guid.NewGuid().ToString(),
                         UserName = model.UserName

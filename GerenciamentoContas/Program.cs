@@ -2,6 +2,7 @@ using GerenciamentoContas.Domain.Entity;
 using GerenciamentoContas.Domain.Entity.Identity;
 using GerenciamentoContas.Domain.Entity.Identy;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -11,8 +12,8 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddControllers();
 builder.Services.AddSwaggerGen(c =>
 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Empresa X", Version = "v1," }));
-builder.Services.AddIdentityCore<MyUser>(options => { });
-builder.Services.AddScoped<IUserStore<MyUser>, MyUserStore>();
+builder.Services.AddIdentityCore<IdentityUser>(options => { });
+builder.Services.AddScoped<IUserStore<IdentityUser>, UserOnlyStore<IdentityUser ,IdentityDbContext>>();
 builder.Services.AddAuthentication("cookies").AddCookie("cookies", options => options.LoginPath = "/Home/Login");
 
 var app = builder.Build();
