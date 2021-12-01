@@ -15,7 +15,7 @@ namespace GerenciamentoContas.Domain.Entity.Identity
     {
         public static DbConnection GetOpenConnection()
         {
-            var connection = new SqlConnection(@"Password=admin123;Persist Security Info=True;User ID=sa;Initial Catalog=IdentityCurso;Data Source=DESKTOP-IGQJCON\SQLEXPRESS");
+            var connection = new SqlConnection(@"Password=admin123;Persist Security Info=True;User ID=sa;Initial Catalog=LaboratorioDB;Data Source=DESKTOP-OSI7V52\SQLEXPRESS");
             connection.Open();
             return connection;
         }
