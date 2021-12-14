@@ -12,9 +12,9 @@ namespace GerenciamentoContas.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly UserManager<IdentityUser> _userManager;        
+        private readonly UserManager<MyUser> _userManager;        
 
-        public HomeController(UserManager<IdentityUser> userManager)
+        public HomeController(UserManager<MyUser> userManager)
         {
             _userManager = userManager;           
         }
@@ -78,7 +78,7 @@ namespace GerenciamentoContas.Controllers
                 var user = await _userManager.FindByNameAsync(model.UserName);
                 if (user == null)
                 {
-                    user = new IdentityUser()
+                    user = new MyUser()
                     {
                         Id = Guid.NewGuid().ToString(),
                         UserName = model.UserName

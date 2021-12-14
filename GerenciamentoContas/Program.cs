@@ -14,12 +14,12 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddControllers();
 builder.Services.AddSwaggerGen(c =>
 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Empresa X", Version = "v1," }));
-builder.Services.AddIdentityCore<IdentityUser>(options => { });
-builder.Services.AddScoped<IUserStore<IdentityUser>, UserOnlyStore<IdentityUser ,IdentityDbContext>>();
+builder.Services.AddIdentityCore<MyUser>(options => { });
+builder.Services.AddScoped<IUserStore<MyUser>, UserOnlyStore<MyUser ,MyUserDbContext>>();
 builder.Services.AddAuthentication("cookies").AddCookie("cookies", options => options.LoginPath = "/Home/Login");
 var migrationAssembly = typeof(Program).GetTypeInfo().Assembly.GetName().Name;
 var connectionString = @"Password=admin123;Persist Security Info=True;User ID=sa;Initial Catalog=IdentityCore;Data Source=DESKTOP-OSI7V52\SQLEXPRESS";
-builder.Services.AddDbContext<IdentityDbContext>(options => options.UseSqlServer(connectionString, sql => sql.MigrationsAssembly(migrationAssembly)));
+builder.Services.AddDbContext<MyUserDbContext>(options => options.UseSqlServer(connectionString, sql => sql.MigrationsAssembly(migrationAssembly)));
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
