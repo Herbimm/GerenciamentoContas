@@ -153,6 +153,14 @@ namespace GerenciamentoContas.Controllers
                         var confirmationEmail = Url.Action("ConfirmEmailAddress", "Home", new { token = token, email = user.Email }, Request.Scheme);
                         System.IO.File.WriteAllText("confirmationEmail.txt", confirmationEmail);
                     }
+                    else
+                    {
+                        foreach (var erro in result.Errors)
+                        {
+                            ModelState.AddModelError("", erro.Description);
+                        }
+                        return View();
+                    }
                 }
                 return View("Sucess");
             }

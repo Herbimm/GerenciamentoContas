@@ -14,11 +14,19 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddControllers();
 builder.Services.AddSwaggerGen(c =>
 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Empresa X", Version = "v1," }));
-builder.Services.AddIdentity<MyUser, IdentityRole>(options => {
+builder.Services.AddIdentity<MyUser, IdentityRole>(options =>
+{
     options.SignIn.RequireConfirmedEmail = true;
+    options.Password.RequireDigit = false;
+    options.Password.RequireNonAlphanumeric = false;
+    options.Password.RequireLowercase = false;
+    options.Password.RequireUppercase = false;
+    options.Password.RequiredLength = 8;
 })
     .AddEntityFrameworkStores<MyUserDbContext>()
-    .AddDefaultTokenProviders();
+    .AddDefaultTokenProviders()
+    .AddPasswordValidator<DoesNotContainPasswordValidator<MyUser>>();
+
 
 builder.Services.Configure<DataProtectionTokenProviderOptions>(options => options.TokenLifespan = TimeSpan.FromHours(3));
 
