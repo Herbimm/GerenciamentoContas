@@ -8,7 +8,7 @@ namespace GerenciamentoContas.Models.Identity
         public string Email { get; set; }
         [DataType(DataType.Password)]
         public string Password{ get; set; }
-        [Compare("Password", ErrorMessage ="")]
+        [Compare("Password", ErrorMessage = "Senhas não coincidem")]
         public string ConfirmPassword { get; set; } 
     }
 }

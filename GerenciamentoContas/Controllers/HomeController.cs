@@ -90,6 +90,7 @@ namespace GerenciamentoContas.Controllers
                     var resetUrl = Url.Action("ResetPassword", "Home", new {
                         token = token, email = model.Email }, Request.Scheme);
                     System.IO.File.WriteAllText("resetLink.txt", resetUrl);
+                    return View("Sucess");
                 }
                 else
                 {
@@ -99,17 +100,32 @@ namespace GerenciamentoContas.Controllers
             return View();
         }
         [HttpGet]
-        public async Task<IActionResult> ResetPassword()
+        public async Task<IActionResult> ResetPassword(string token, string email)
         {
-            return View();
+            return View(new ResetPasswordModel { Token = token, Email = email});
         } 
         [HttpPost]
         public async Task<IActionResult> ResetPassword(ResetPasswordModel model)
         {
             if (ModelState.IsValid)
             {
-
+                var user = await _userManager.FindByEmailAsync(model.Email);
+                if (user != null)
+                {
+                    var result = await _userManager.ResetPasswordAsync(user, model.Token, model.Password);
+                    if (!result.Succeeded)
+                    {
+                        foreach (var erro in result.Errors)
+                        {
+                            ModelState.AddModelError("", erro.Description);
+                        }
+                        return View();
+                    }
+                    return View("Sucess");
+                }
+                ModelState.AddModelError("", "Invalid Request");
             }
+            return View();
         }
         public async Task<IActionResult> Register(RegisterModel model)
         {
