@@ -14,7 +14,9 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddControllers();
 builder.Services.AddSwaggerGen(c =>
 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Empresa X", Version = "v1," }));
-builder.Services.AddIdentity<MyUser, IdentityRole>(options => { })
+builder.Services.AddIdentity<MyUser, IdentityRole>(options => {
+    options.SignIn.RequireConfirmedEmail = true;
+})
     .AddEntityFrameworkStores<MyUserDbContext>()
     .AddDefaultTokenProviders();
 
