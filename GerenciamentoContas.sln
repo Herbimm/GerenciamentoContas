@@ -5,11 +5,17 @@ VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GerenciamentoContas", "GerenciamentoContas\GerenciamentoContas.csproj", "{899B7AFA-1E32-46D4-B3D7-95C71409A264}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GerenciamentoContas.Domain", "GerenciamentoContas.Domain\GerenciamentoContas.Domain.csproj", "{619CA969-5C6F-46C0-9BCE-7E3F2102CE45}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GerenciamentoContas.Domain", "GerenciamentoContas.Domain\GerenciamentoContas.Domain.csproj", "{619CA969-5C6F-46C0-9BCE-7E3F2102CE45}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GerenciamentoContas.Service", "GerenciamentoContas.Service\GerenciamentoContas.Service.csproj", "{73ED281A-6D28-4794-B42F-AC765CB98E44}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GerenciamentoContas.Service", "GerenciamentoContas.Service\GerenciamentoContas.Service.csproj", "{73ED281A-6D28-4794-B42F-AC765CB98E44}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GerenciamentoContas.Repository", "GerenciamentoContas.Repository\GerenciamentoContas.Repository.csproj", "{516B339A-E274-4278-8F6C-3DC9A1A3B1E6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GerenciamentoContas.Repository", "GerenciamentoContas.Repository\GerenciamentoContas.Repository.csproj", "{516B339A-E274-4278-8F6C-3DC9A1A3B1E6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GerenciamentoContas.NewApi", "GerenciamentoContas.NewApi\GerenciamentoContas.NewApi.csproj", "{01B98456-7C5D-4F24-8278-4263275A0BEF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApi.Domain", "WebApi.Domain\WebApi.Domain.csproj", "{C2D477FD-2FEF-4644-9788-D1582C232DE3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebAPI.Repository", "WebAPI.Repository\WebAPI.Repository.csproj", "{7887FA4D-DFCE-4478-917B-5764C6C14FBC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +39,18 @@ Global
 		{516B339A-E274-4278-8F6C-3DC9A1A3B1E6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{516B339A-E274-4278-8F6C-3DC9A1A3B1E6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{516B339A-E274-4278-8F6C-3DC9A1A3B1E6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{01B98456-7C5D-4F24-8278-4263275A0BEF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{01B98456-7C5D-4F24-8278-4263275A0BEF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{01B98456-7C5D-4F24-8278-4263275A0BEF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{01B98456-7C5D-4F24-8278-4263275A0BEF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C2D477FD-2FEF-4644-9788-D1582C232DE3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C2D477FD-2FEF-4644-9788-D1582C232DE3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C2D477FD-2FEF-4644-9788-D1582C232DE3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C2D477FD-2FEF-4644-9788-D1582C232DE3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7887FA4D-DFCE-4478-917B-5764C6C14FBC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7887FA4D-DFCE-4478-917B-5764C6C14FBC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7887FA4D-DFCE-4478-917B-5764C6C14FBC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7887FA4D-DFCE-4478-917B-5764C6C14FBC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
