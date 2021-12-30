@@ -1,10 +1,11 @@
-﻿ using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using WebApi.Domain;
 
 namespace WebAPI.Repository
 {
-    public class Context : IdentityDbContext<User>
+    public class Context : IdentityDbContext<User, Role, int, IdentityUserClaim<int>, UserRole, IdentityUserLogin<int>, IdentityRoleClaim<int>, IdentityUserToken<int>>
     {
         public Context(DbContextOptions<Context> options) : base(options)
         {}
@@ -13,7 +14,16 @@ namespace WebAPI.Repository
         {
             base.OnModelCreating(builder);
 
-            builder.Entity<UserRole>();
+            builder.Entity<UserRole>(userRole =>
+            {
+                userRole.HasKey(ur => new { ur.UserId, ur.RoleId });
+                userRole.HasOne(userRole => userRole.Role)
+                        .WithMany(r=>r.UserRoles)
+                        .HasForeignKey(r => r.RoleId)
+                        .IsRequired();                        
+            });
+
+
 
             builder.Entity<Organizacao>(org =>
             {

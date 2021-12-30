@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace WebApi.Domain
 {
-    public class UserRole : IdentityUserRole
+    public class UserRole : IdentityUserRole<int>
     {
-        public User User { get; set; }
-        public Role Role { get; set; }
+        public User? User { get; set; }
+        public Role? Role { get; set; }
     }
 }
