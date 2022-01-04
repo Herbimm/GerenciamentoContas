@@ -1,3 +1,4 @@
+using AutoMapper;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -6,6 +7,7 @@ using Microsoft.IdentityModel.Tokens;
 using System.Reflection;
 using System.Text;
 using WebApi.Domain;
+using WebApi.Domain.Helper;
 using WebAPI.Repository;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -18,11 +20,18 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 var migrationAssembly = typeof(Program).GetTypeInfo().Assembly.GetName().Name;
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+
 builder.Services.AddDbContext<Context>(options => options.UseSqlServer(connectionString, sql => sql.MigrationsAssembly(migrationAssembly)));
+var mappingConfig = new MapperConfiguration(mc =>
+{
+    mc.AddProfile(new AutoMapperProfile());
+});
+IMapper mapper = mappingConfig.CreateMapper();
+builder.Services.AddSingleton(mapper);
 
 builder.Services.AddIdentity<User, Role>(options =>
  {
-     options.SignIn.RequireConfirmedEmail = true;
+     //options.SignIn.RequireConfirmedEmail = false;
      options.Password.RequireDigit = false;
      options.Password.RequireNonAlphanumeric = false;
      options.Password.RequireLowercase = false;
@@ -39,6 +48,7 @@ builder.Services.AddIdentity<User, Role>(options =>
     .AddSignInManager<SignInManager<User>>()
     .AddDefaultTokenProviders();
 
+
 builder.Services.AddCors();
 
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
@@ -53,6 +63,7 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
             ValidateAudience = false
         };
     });
+
 
 
 
