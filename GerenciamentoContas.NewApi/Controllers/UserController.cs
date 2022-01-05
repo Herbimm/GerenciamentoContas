@@ -7,6 +7,7 @@ using System.Security.Claims;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using System.IdentityModel.Tokens.Jwt;
+using Microsoft.AspNetCore.Authorization;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -32,6 +33,7 @@ namespace GerenciamentoContas.NewApi.Controllers
 
         // GET: api/<UserController>
         [HttpGet]
+        [AllowAnonymous]
         public IEnumerable<string> Get()
         {
             return new string[] { "value1", "value2" };
@@ -39,6 +41,7 @@ namespace GerenciamentoContas.NewApi.Controllers
 
         // GET api/<UserController>/5
         [HttpPost("{Login}")]
+        [AllowAnonymous]
         public async Task<IActionResult> Login(UserLoginDto userLogin)
         {
             try
@@ -54,6 +57,7 @@ namespace GerenciamentoContas.NewApi.Controllers
                     {
                         token = GenerateJwToken(appUser).Result,
                         user = userToReturn
+                        
 
                     });
                 }
@@ -69,6 +73,7 @@ namespace GerenciamentoContas.NewApi.Controllers
 
         // POST api/<UserController>
         [HttpPost("Register")]
+        [AllowAnonymous]
         public async Task<IActionResult> Register([FromBody] UserDto userDto)
         {
             try

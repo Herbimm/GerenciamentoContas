@@ -1,7 +1,9 @@
 using AutoMapper;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using System.Reflection;
@@ -29,7 +31,7 @@ var mappingConfig = new MapperConfiguration(mc =>
 IMapper mapper = mappingConfig.CreateMapper();
 builder.Services.AddSingleton(mapper);
 
-builder.Services.AddIdentity<User, Role>(options =>
+builder.Services.AddIdentityCore<User>(options =>
  {
      //options.SignIn.RequireConfirmedEmail = false;
      options.Password.RequireDigit = false;
@@ -42,11 +44,20 @@ builder.Services.AddIdentity<User, Role>(options =>
      options.Lockout.AllowedForNewUsers = true;
 
  })
+    .AddRoles<Role>()
     .AddEntityFrameworkStores<Context>()
     .AddRoleValidator<RoleValidator<Role>>()
     .AddRoleManager<RoleManager<Role>>()
     .AddSignInManager<SignInManager<User>>()
     .AddDefaultTokenProviders();
+
+builder.Services.AddMvc(options =>
+{
+    var policy = new AuthorizationPolicyBuilder()
+    .RequireAuthenticatedUser()
+    .Build();
+    options.Filters.Add(new AuthorizeFilter(policy));
+});
 
 
 builder.Services.AddCors();
@@ -69,6 +80,7 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
 
 
 var app = builder.Build();
+app.UseAuthentication();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
